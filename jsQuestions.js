@@ -18,8 +18,8 @@
 // function add(x, y) {
 //     return(x+y);
 // }
-
-// add = (Math.floor(Math.random()*100),Math.floor(Math.random()*100)) =   > x + y;
+// let myFunction = (a,b) => (a, b);
+// console.log("random " + myFunction(Math.floor(Math.random()*100),Math.floor(Math.random()*100)))
 
 // var x = 10;
 // const words = ["file", "edit", "selection", "view", "go", "math", "terminal", "help", "window", "run", "debug", "command", "line", "node", "use"];
@@ -30,6 +30,7 @@
 // words.sort();
 // words.push(console);
 // words.push(x);
+
 const numbers = [Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29), Math.floor(Math.random()*58+29)];
 const distances = [];
 for (let i = 0; i < numbers.length - 1; i++) {
@@ -38,16 +39,47 @@ for (let i = 0; i < numbers.length - 1; i++) {
         distance = distance*(-1);
     }
     distances.push(distance);
-    console.log(numbers[i]);
+    // console.log(numbers[i]);
 }
 var greatestDistance = 0;
 var distancesIndex;
-console.log("****");
+// console.log("****");
 for (let x = 0; x < distances.length; x++) {
-    console.log(distances[x]);
+    // console.log(distances[x]);
     if (distances[x] > greatestDistance) {
         greatestDistance = distances[x];
         distancesIndex = x;
     }
 }
 console.log("greatest distance= " + greatestDistance + " between elements " + (distancesIndex+1) + " and " + (distancesIndex+2));
+
+const numbersSquared = numbers.map(square)
+function square(num) {
+  return num * num;
+}
+console.log("original numbers: " + numbersSquared);
+
+var largestNumberSquared = 0;
+for (let i = 0; i < numbersSquared.length; i++) {
+    if (numbersSquared[i] > largestNumberSquared) {
+        largestNumberSquared = numbersSquared[i];
+    }
+}
+console.log("largest number squared: " + largestNumberSquared);
+const squaredResult = numbersSquared.filter(largerThanHalf);
+function largerThanHalf(num){
+    return num > (largestNumberSquared/2);
+}
+console.log("filtered numbers squared array: " + squaredResult);
+
+squaredResult.reduce(getSum, 0);
+function getSum(total, num) {
+  return total + Math.round(num);
+}
+console.log("filtered numbers squared array sum= " + squaredResult.reduce(getSum, 0))
+
+squaredResult.forEach(print);
+function print(num) {
+    console.log(num);
+}
+
